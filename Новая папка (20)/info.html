@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании — CineMarket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./info.css">
+</head>
+<body>
+
+    <header class="header info-header">
+        <a class="logo" href="index.html">
+            <i class="fa-solid fa-clapperboard"></i> <span>CineMarket</span>
+        </a>
+        <nav class="nav info-nav" id="navMenu" aria-label="Основная навигация">
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> На главную</a>
+        </nav>
+        <div class="header-actions">
+            <button class="balance-widget desktop-balance info-balance" id="desktopBalance" type="button">
+                <i class="fa-solid fa-wallet" aria-hidden="true"></i>
+                <span>Баланс: <strong id="desktopBalanceAmount">0 сум</strong></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-copy">
+                <span class="eyebrow"><i class="fa-solid fa-film"></i> CineMarket / с 2024 года</span>
+                <h1>Кино, которое остаётся с тобой.</h1>
+                <p>Мы собрали в одном месте фильмы для больших вечеров, честные рекомендации и вещи, которые хочется оставить себе.</p>
+                <a class="about-button" href="index.html#movies"><i class="fa-solid fa-play"></i> Открыть каталог</a>
+            </div>
+            <div class="poster-stack" aria-label="Подборка фильмов CineMarket">
+                <img class="poster poster-back" src="./images/OIP (2).webp" alt="Постер фильма Дюна">
+                <img class="poster poster-middle" src="./images/black.jpg" alt="Постер фильма Темный рыцарь">
+                <img class="poster poster-front" src="./images/Avengers.jpg" alt="Постер фильма Мстители">
+            </div>
+        </section>
+
+        <section class="about-section intro-section">
+            <div class="section-label">Зачем мы здесь</div>
+            <div class="intro-grid">
+                <h2>Не просто смотреть.<br><em>Проживать истории.</em></h2>
+                <p>CineMarket появился из любви к кино и желания сделать выбор проще. Здесь можно найти фильм под настроение, оформить подписку и купить мерч, который продолжает его историю за пределами экрана.</p>
+            </div>
+        </section>
+
+        <section class="about-section values-section">
+            <div class="section-label">Наши принципы</div>
+            <div class="values-grid">
+                <article class="value-item">
+                    <span class="value-number">01</span>
+                    <i class="fa-solid fa-compass"></i>
+                    <h3>Выбор без шума</h3>
+                    <p>Подбираем кино по жанрам, рейтингам и настроению, чтобы хорошая история находилась быстрее.</p>
+                </article>
+                <article class="value-item">
+                    <span class="value-number">02</span>
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Внимание к деталям</h3>
+                    <p>От обложки фильма до упаковки заказа всё должно создавать ощущение настоящей премьеры.</p>
+                </article>
+                <article class="value-item">
+                    <span class="value-number">03</span>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Кино для своих</h3>
+                    <p>Строим место, где можно делиться впечатлениями и возвращаться к любимым фильмам.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="about-section numbers-section">
+            <div class="number-block"><strong>15+</strong><span>фильмов в каталоге</span></div>
+            <div class="number-block"><strong>4.8</strong><span>средняя оценка зрителей</span></div>
+            <div class="number-block"><strong>24/7</strong><span>доступ к любимым историям</span></div>
+        </section>
+
+        <section class="about-section contact-section">
+            <div>
+                <div class="section-label">Остаёмся на связи</div>
+                <h2>Следующая история<br>может начаться сегодня.</h2>
+            </div>
+            <a class="about-button light-button" href="index.html#shop">Заглянуть в магазин <i class="fa-solid fa-arrow-right"></i></a>
+        </section>
+    </main>
+
+    <footer class="info-footer">
+        <a class="footer-brand" href="index.html">CineMarket</a>
+        <span>Кино, покупки и немного магии.</span>
+        <span>&copy; 2026 CineMarket</span>
+    </footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>

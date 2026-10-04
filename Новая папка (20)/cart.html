@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — CineMarket</title>
+    <link rel="stylesheet" href="./watch.css">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <i class="fa-solid fa-clapperboard"></i> <span>CineMarket</span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> На главную</a>
+        </nav>
+    </header>
+
+    <!-- Основной контент страницы корзины -->
+    <main class="cart-page-container">
+        <h1>Ваша корзина товаров</h1>
+        
+        <div class="cart-page-content" id="cartPageContent">
+            <!-- Динамически заполняется через JS -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column"><h2>Смотреть</h2><a href="index.html#hero">Главная</a><a href="index.html#movies">Фильмы</a><a href="index.html#pricing">Подписка</a></div>
+            <div class="footer-column"><h2>Магазин</h2><a href="index.html#shop">Каталог товаров</a><a href="cart.html">Корзина</a><a href="index.html#shop">Новинки</a></div>
+            <div class="footer-column"><h2>Аккаунт</h2><a href="profile.html">Профиль</a><a href="index.html#hero">CineMarket</a><a href="cart.html">Мои покупки</a></div>
+        </div>
+        <div class="footer-bottom"><a class="footer-brand" href="index.html">CineMarket</a><p>&copy; 2026 CineMarket. Все права защищены.</p></div>
+    </footer>
+
+    <!-- Скрипт управления отдельной корзиной -->
+    <script>
+        function renderCartPage() {
+            let cart = JSON.parse(localStorage.getItem('cineMarketCart')) || [];
+            const container = document.getElementById('cartPageContent');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart-message">
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 64px; color: var(--text-muted); margin-bottom: 20px;"></i>
+                        <h3>Ваша корзина пуста</h3>
+                        <p>Добавьте товары из маркетплейса на главной странице.</p>
+                        <a href="index.html" class="btn primary-btn" style="margin-top: 20px;">Перейти в магазин</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let total = 0;
+            let itemsHTML = '';
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                itemsHTML += `
+                    <div class="cart-page-item">
+                        <img src="${item.img}" alt="${item.title}" class="cart-page-img">
+                        <div class="cart-page-info">
+                            <h3>${item.title}</h3>
+                            <span class="price">${item.price} сум</span>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeItem(${index})">
+                            <i class="fa-solid fa-trash"></i> Удалить
+                        </button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="cart-items-list">
+                    ${itemsHTML}
+                </div>
+                <div class="cart-summary-box">
+                    <h3>Итого к оплате</h3>
+                    <div class="summary-row">
+                        <span>Товары (${cart.length}):</span>
+                        <span>${total} сум</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Сумма:</span>
+                        <span style="color: var(--accent);">${total} сум</span>
+                    </div>
+                    <button class="btn primary-btn checkout-page-btn" onclick="checkoutCart()">Оформить заказ</button>
+                </div>
+            `;
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cineMarketCart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cineMarketCart', JSON.stringify(cart));
+            renderCartPage();
+        }
+
+        function checkoutCart() {
+            const cart = JSON.parse(localStorage.getItem('cineMarketCart')) || [];
+            const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+            if (!chargeBalance(total)) return;
+            alert('Заказ успешно оформлен! Спасибо за покупку в CineMarket.');
+            localStorage.removeItem('cineMarketCart');
+            renderCartPage();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCartPage();
+        });
+    </script>
+    <script src="./app.js"></script>
+</body>
+</html>

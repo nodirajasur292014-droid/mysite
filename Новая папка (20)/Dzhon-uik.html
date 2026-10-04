@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Джон Уик 4 — Смотреть онлайн</title>
+    <link rel="stylesheet" href="./watch.css">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <i class="fa-solid fa-clapperboard"></i> <span>CineMarket</span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> На главную</a>
+        </nav>
+    </header>
+
+    <!-- Основной контент страницы фильма -->
+    <main class="watch-container">
+        <div class="movie-banner-info">
+            <h1>Джон Уик 4 (2023)</h1>
+            <p> </p>
+        </div>
+
+        <!-- Контейнер плеера / интерактивной зоны -->
+        <div class="player-wrapper" id="playerWrapper">
+            <div class="access-screen" id="accessScreen">
+                <div class="access-box">
+                    <i class="fa-solid fa-film" style="font-size: 48px; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h3 id="accessTitle">Для просмотра требуется аккаунт</h3>
+                    <p id="accessDesc">Войдите в систему или зарегистрируйтесь, чтобы получить доступ к фильму.</p>
+                    
+                    <button class="btn primary-btn watch-main-btn" id="actionBtn" onclick="handleAuthAction()">
+                        Войти или зарегистрироваться
+                    </button>
+                </div>
+            </div>
+
+            <video
+                id="movieVideo" 
+                class="movie-player" 
+                src="./watch/Dzhon_uik_4_2023_720.mp4" 
+                controls
+                playsinline
+                style="display: none;">
+            </video>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column"><h2>Смотреть</h2><a href="index.html#hero">Главная</a><a href="index.html#movies">Фильмы</a><a href="index.html#pricing">Подписка</a></div>
+            <div class="footer-column"><h2>Магазин</h2><a href="index.html#shop">Каталог товаров</a><a href="cart.html">Корзина</a><a href="index.html#shop">Новинки</a></div>
+            <div class="footer-column"><h2>Аккаунт</h2><a href="profile.html">Профиль</a><a href="index.html#hero">CineMarket</a><a href="cart.html">Мои покупки</a></div>
+        </div>
+        <div class="footer-bottom"><a class="footer-brand" href="index.html">CineMarket</a><p>&copy; 2026 CineMarket. Все права защищены.</p></div>
+    </footer>
+
+    <script>
+        let userState = localStorage.getItem('dzhonUikState') || 'guest';
+
+        function updateWatchUI() {
+            const actionBtn = document.getElementById('actionBtn');
+            const accessTitle = document.getElementById('accessTitle');
+            const accessDesc = document.getElementById('accessDesc');
+            const accessScreen = document.getElementById('accessScreen');
+            const movieVideo = document.getElementById('movieVideo');
+
+            if (userState === 'guest') {
+                accessTitle.innerText = "Для просмотра требуется аккаунт";
+                accessDesc.innerText = "Войдите в систему или зарегистрируйтесь, чтобы получить доступ к фильму.";
+                actionBtn.innerText = "Войти или зарегистрироваться";
+                accessScreen.style.display = "flex";
+                movieVideo.style.display = "none";
+            } else if (userState === 'unpaid') {
+                accessTitle.innerText = "Фильм доступен для покупки";
+                accessDesc.innerText = "Приобретите доступ к фильму «Джон Уик 4», чтобы начать просмотр.";
+                actionBtn.innerText = "Купить фильм (29 999 сум)";
+                accessScreen.style.display = "flex";
+                movieVideo.style.display = "none";
+            } else if (userState === 'paid') {
+                accessTitle.innerText = "Доступ открыт!";
+                accessDesc.innerText = "Нажмите на треугольник воспроизведения, чтобы запустить фильм.";
+                actionBtn.innerHTML = `<i class="fa-solid fa-play" style="font-size: 24px;"></i> СМОТРЕТЬ ФИЛЬМ`;
+                actionBtn.style.padding = "16px 32px";
+                actionBtn.style.fontSize = "18px";
+                actionBtn.onclick = startPlayingMovie;
+            }
+        }
+
+        function handleAuthAction() {
+            if (userState === 'guest') {
+                alert('Вы успешно вошли в систему!');
+                userState = 'unpaid';
+                localStorage.setItem('dzhonUikState', userState);
+                updateWatchUI();
+            } else if (userState === 'unpaid') {
+                let confirmPay = confirm('Подтвердить платеж за фильм «Джон Уик 4» на сумму 29 999 сум?');
+                if (confirmPay) {
+                    if (!chargeBalance(29999)) return;
+                    alert('Платеж успешно проведен! Доступ разблокирован.');
+                    userState = 'paid';
+                    localStorage.setItem('dzhonUikState', userState);
+                    updateWatchUI();
+                }
+            }
+        }
+
+        function startPlayingMovie() {
+            const accessScreen = document.getElementById('accessScreen');
+            const movieVideo = document.getElementById('movieVideo');
+            
+            accessScreen.style.display = 'none';
+            movieVideo.style.display = 'block';
+            movieVideo.play();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateWatchUI();
+        });
+    </script>
+    <script src="./app.js"></script>
+</body>
+</html>

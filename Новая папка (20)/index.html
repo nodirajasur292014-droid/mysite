@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMarket — Кино и Покупки</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="logo">
+            <i class="fa-solid fa-clapperboard"></i> <span>CineMarket</span>
+        </div>
+        
+        <nav class="nav" id="navMenu">
+            <div class="balance-widget mobile-balance">
+                <span><i class="fa-solid fa-wallet" aria-hidden="true"></i> Баланс: <strong id="mobileBalance">0 сум</strong></span>
+                <a href="profile.html" class="balance-topup-link">Пополнить в профиле</a>
+            </div>
+            <a href="index.html#hero" class="nav-link">Главная</a>
+            <a href="./cart.html" class="nav-link">Карзина</a>
+            <a href="info.html" class="nav-link">о компании</a>
+            <button class="login-btn mobile-profile" id="mobileProfile" type="button">Войти</button>
+        </nav>
+
+        <div class="header-actions">
+            <form class="site-search" id="siteSearch" role="search">
+                <input id="siteSearchInput" type="search" placeholder="Найти фильм или товар" aria-label="Найти фильм или товар">
+                <button class="search-submit" id="searchSubmit" type="submit" aria-label="Поиск" aria-expanded="false">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <button class="cart-btn" id="openCart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+
+            <button class="login-btn" id="openLogin" type="button">Войти</button>
+            <button class="balance-widget desktop-balance" id="desktopBalance" type="button">
+                <i class="fa-solid fa-wallet" aria-hidden="true"></i>
+                <span>Баланс: <strong id="desktopBalanceAmount">0 сум</strong></span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Открыть меню">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- Главный блок (Hero) -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="./images/OIP.webp">
+            <source src="./watch/coub-3fgwkm.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">Премьера сезона</span>
+            <h1>Смотри блокбастеры и покупай мерч в один клик</h1>
+            <p>Погрузись в мир кинематографа с подпиской нового поколения и официальными коллекционными товарами.</p>
+            <div class="hero-buttons">
+                <a href="#movies" class="btn primary-btn"><i class="fa-solid fa-play"></i> Смотреть кино</a>
+                <a href="#shop" class="btn secondary-btn"><i class="fa-solid fa-bag-shopping"></i> В магазин</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция фильмов -->
+    <section class="section" id="movies">
+        <div class="section-header">
+            <h2>Кинотеатр и Сериалы</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="action">Боевики</button>
+                <button class="filter-btn" data-filter="scifi">Фантастика</button>
+                <button class="filter-btn" data-filter="drama">Драма</button>
+            </div>
+        </div>
+        <div class="movies-grid" id="moviesGrid">
+            <!-- Рендерится через JS -->
+        </div>
+    </section>
+
+    <!-- Секция магазина -->
+    <section class="section shop-section" id="shop">
+        <div class="section-header">
+            <h2>Кино-Маркетплейс</h2>
+            <p>Эксклюзивный мерч, одежда и гаджеты</p>
+        </div>
+        <div class="shop-grid" id="shopGrid">
+            <!-- Рендерится через JS -->
+        </div>
+    </section>
+
+    <!-- Секция тарифов -->
+    <section class="section" id="pricing">
+        <div class="section-header">
+            <h2>Тарифные планы</h2>
+            <p>Выбери свой уровень доступа к контенту</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Стартовый</h3>
+                <div class="price">19999.990 сум / мес</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Доступ в HD качестве</li>
+                    <li><i class="fa-solid fa-check"></i> 1 экран одновременно</li>
+                </ul>
+                <button class="btn primary-btn" onclick="alert('Выбран тариф Стартовый!')">Выбрать</button>
+            </div>
+            <div class="pricing-card">
+                <h3>плюс</h3>
+                <div class="price">29999.990 сум / мес</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Доступ в Full HD качестве</li>
+                    <li><i class="fa-solid fa-check"></i> 2 экрана одновременно</li>
+                </ul>
+                <button class="btn primary-btn" onclick="alert('Выбран тариф плюс!')">Выбрать</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Премиум</h3>
+                <div class="price">39999.990 сум / мес</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Доступ 2K качестве</li>
+                    <li><i class="fa-solid fa-check"></i> 3 экрана одновременно</li>
+                </ul>
+                <button class="btn primary-btn" onclick="alert('Выбран тариф Премиум!')">Выбрать</button>
+            </div>
+            <div class="pricing-card featured">
+                <span class="popular-badge">Хит</span>
+                <h3>Премиум + </h3>
+                <div class="price">49999.990 сум / мес</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Доступ в 4K качестве</li>
+                    <li><i class="fa-solid fa-check"></i> 4 экрана одновременно</li>
+                </ul>
+                <button class="btn primary-btn" onclick="alert('Выбран тариф Премиум 4K!')">Выбрать</button>
+            </div>
+            <div class="pricing-card featured">
+                <span class="popular-badge">Хит</span>
+                <h3>Премиум Про </h3>
+                <div class="price">59999.990 сум / мес</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Доступ в 8K качестве</li>
+                    <li><i class="fa-solid fa-check"></i> 4 экрана одновременно</li>
+                </ul>
+                <button class="btn primary-btn" onclick="alert('Выбран тариф Премиум 8K!')">Выбрать</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Боковая панель корзины -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Ваша корзина</h3>
+            <button class="close-cart" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotal">0 с</span>
+            </div>
+            <button class="btn primary-btn checkout-btn" onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+        <div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button class="auth-close" id="closeAuth" type="button" aria-label="Закрыть">&times;</button>
+            <h2 id="authTitle">Вход в аккаунт</h2>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="loginTab" type="button">Войти</button>
+                <button class="auth-tab" id="registerTab" type="button">Регистрация</button>
+            </div>
+            <form id="loginForm">
+                <div id="registerFields" hidden>
+                    <label for="registerNickname">Никнейм</label>
+                    <input id="registerNickname" type="text" autocomplete="nickname">
+                    <label for="registerPhone">Номер телефона</label>
+                    <input id="registerPhone" type="tel" autocomplete="tel" placeholder="+998 90 123 45 67">
+                </div>
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" placeholder="you@example.com" required>
+                <label for="loginPassword">Пароль</label>
+                <input id="loginPassword" type="password" minlength="4" required>
+                <p class="auth-error" id="authError" role="alert"></p>
+                <button class="btn primary-btn auth-submit" type="submit" id="authSubmit">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h2>Смотреть</h2>
+                <a href="index.html#hero">Главная</a>
+                <a href="index.html#movies">Фильмы</a>
+                <a href="index.html#pricing">Подписка</a>
+            </div>
+            <div class="footer-column">
+                <h2>Магазин</h2>
+                <a href="index.html#shop">Каталог товаров</a>
+                <a href="cart.html">Корзина</a>
+                <a href="index.html#shop">Новинки</a>
+            </div>
+            <div class="footer-column">
+                <h2>Аккаунт</h2>
+                <a href="profile.html">Профиль</a>
+                <a href="index.html#hero">CineMarket</a>
+                <a href="cart.html">Мои покупки</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a class="footer-brand" href="index.html">CineMarket</a>
+            <p>&copy; 2026 CineMarket. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>
